@@ -39,7 +39,7 @@ public class CustomTabActivityHelper implements ServiceConnectionCallback {
                                      Uri uri,
                                      @Nullable Map<String, String> headers,
                                      @Nullable Uri referrer,
-                                     int requestCode) throws ClassNotFoundException {
+                                     int requestCode) {
         intent.setData(uri);
         if (headers != null) {
             Bundle bundleHeaders = new Bundle();

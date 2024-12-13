@@ -1463,6 +1463,7 @@ final public class InAppWebView extends InputAwareWebView implements InAppWebVie
 
   @Nullable
   public String printCurrentPage(@Nullable PrintJobSettings settings) {
+    try {
     if (plugin != null && plugin.activity != null) {
       // Get a PrintManager instance
       PrintManager printManager = (PrintManager) plugin.activity.getSystemService(Context.PRINT_SERVICE);
@@ -1539,6 +1540,9 @@ final public class InAppWebView extends InputAwareWebView implements InAppWebVie
       } else {
         Log.e(LOG_TAG, "No PrintManager available");
       }
+    }
+    } catch (Exception e) {
+      return null;
     }
     return null;
   }

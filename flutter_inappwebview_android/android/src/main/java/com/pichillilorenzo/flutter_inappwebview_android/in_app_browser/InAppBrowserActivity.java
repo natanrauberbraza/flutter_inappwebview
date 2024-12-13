@@ -160,7 +160,7 @@ public class InAppBrowserActivity extends AppCompatActivity implements InAppBrow
 
     try {
       prepareView();
-    } catch (ClassNotFoundException e) {
+    } catch (Exception e) {
       Log.d(LOG_TAG, Objects.requireNonNull(e.getMessage()));
     }
 
@@ -202,7 +202,7 @@ public class InAppBrowserActivity extends AppCompatActivity implements InAppBrow
     }
   }
 
-  private void prepareView() throws ClassNotFoundException {
+  private void prepareView() {
 
     if (webView != null) {
       webView.prepare();
@@ -437,13 +437,13 @@ public class InAppBrowserActivity extends AppCompatActivity implements InAppBrow
         Intent openActivity = new Intent(this, Class.forName(fromActivity));
         openActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivityIfNeeded(openActivity, 0);
-      } catch (ClassNotFoundException e) {
+      } catch (Exception e) {
         Log.d(LOG_TAG, "", e);
       }
     }
   }
 
-  public void show() throws ClassNotFoundException {
+  public void show() {
     isHidden = false;
     Intent openActivity = new Intent(this, InAppBrowserActivity.class);
     openActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
@@ -473,7 +473,7 @@ public class InAppBrowserActivity extends AppCompatActivity implements InAppBrow
     close(null);
   }
 
-  public void setSettings(InAppBrowserSettings newSettings, HashMap<String, Object> newSettingsMap) throws ClassNotFoundException {
+  public void setSettings(InAppBrowserSettings newSettings, HashMap<String, Object> newSettingsMap) {
 
     InAppWebViewSettings newInAppWebViewSettings = new InAppWebViewSettings();
     newInAppWebViewSettings.parse(newSettingsMap);

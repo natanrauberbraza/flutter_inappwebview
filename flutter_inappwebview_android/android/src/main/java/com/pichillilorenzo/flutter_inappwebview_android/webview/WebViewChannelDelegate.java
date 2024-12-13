@@ -225,7 +225,7 @@ public class WebViewChannelDelegate extends ChannelDelegateImpl {
           inAppBrowserSettings.parse(inAppBrowserSettingsMap);
           try {
             inAppBrowserActivity.setSettings(inAppBrowserSettings, inAppBrowserSettingsMap);
-          } catch (ClassNotFoundException e) {
+          } catch (Exception e) {
             result.error(LOG_TAG, e.getMessage(), null);
           }
         } else if (webView != null) {
@@ -257,7 +257,7 @@ public class WebViewChannelDelegate extends ChannelDelegateImpl {
           InAppBrowserActivity inAppBrowserActivity = (InAppBrowserActivity) webView.getInAppBrowserDelegate();
           try {
             inAppBrowserActivity.show();
-          } catch (ClassNotFoundException e) {
+          } catch (Exception e) {
             result.error(LOG_TAG, e.getMessage(), null);
           }
           result.success(true);
@@ -370,6 +370,7 @@ public class WebViewChannelDelegate extends ChannelDelegateImpl {
         result.success(true);
         break;
       case printCurrentPage:
+        try {
         if (webView != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
           PrintJobSettings settings = new PrintJobSettings();
           Map<String, Object> settingsMap = (Map<String, Object>) call.argument("settings");
@@ -378,6 +379,9 @@ public class WebViewChannelDelegate extends ChannelDelegateImpl {
           }
           result.success(webView.printCurrentPage(settings));
         } else {
+          result.success(null);
+        }
+        } catch (Exception e) {
           result.success(null);
         }
         break;

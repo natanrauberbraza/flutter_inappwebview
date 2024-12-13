@@ -198,7 +198,7 @@ public class ChromeCustomTabsActivity extends Activity implements Disposable {
   public void launchUrl(@NonNull String url,
                         @Nullable Map<String, String> headers,
                         @Nullable String referrer,
-                        @Nullable List<String> otherLikelyURLs) throws ClassNotFoundException {
+                        @Nullable List<String> otherLikelyURLs) {
     launchUrlWithSession(customTabsSession, url, headers, referrer, otherLikelyURLs);
   }
 
@@ -206,7 +206,7 @@ public class ChromeCustomTabsActivity extends Activity implements Disposable {
                                    @NonNull String url,
                                    @Nullable Map<String, String> headers,
                                    @Nullable String referrer,
-                                   @Nullable List<String> otherLikelyURLs) throws ClassNotFoundException {
+                                   @Nullable List<String> otherLikelyURLs) {
     mayLaunchUrl(url, otherLikelyURLs);
     builder = new CustomTabsIntent.Builder(session);
     prepareCustomTabs();

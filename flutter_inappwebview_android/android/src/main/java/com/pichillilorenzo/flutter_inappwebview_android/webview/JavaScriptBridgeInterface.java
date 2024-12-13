@@ -118,6 +118,7 @@ public class JavaScriptBridgeInterface {
         boolean isInternalHandler = true;
         switch (handlerName) {
           case "onPrintRequest":
+            try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
               PrintJobSettings settings = new PrintJobSettings();
               settings.handledByClient = true;
@@ -146,6 +147,9 @@ public class JavaScriptBridgeInterface {
                   }
                 });
               }
+            }
+            } catch (Exception e) {
+              Log.e(LOG_TAG, "", e);
             }
             break;
           case "callAsyncJavaScript":
