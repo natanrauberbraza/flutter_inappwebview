@@ -47,6 +47,7 @@ public class ChromeSafariBrowserManager extends ChannelDelegateImpl {
     switch (call.method) {
       case "open":
         if (plugin != null && plugin.activity != null) {
+          try {
           String url = (String) call.argument("url");
           HashMap<String, Object> headers = (HashMap<String, Object>) call.argument("headers");
           String referrer = (String) call.argument("referrer");
@@ -55,7 +56,6 @@ public class ChromeSafariBrowserManager extends ChannelDelegateImpl {
           HashMap<String, Object> actionButton = (HashMap<String, Object>) call.argument("actionButton");
           HashMap<String, Object> secondaryToolbar = (HashMap<String, Object>) call.argument("secondaryToolbar");
           List<HashMap<String, Object>> menuItemList = (List<HashMap<String, Object>>) call.argument("menuItemList");
-          try {
             open(plugin.activity, viewId, url, headers, referrer, otherLikelyURLs, settings, actionButton, secondaryToolbar, menuItemList, result);
           } catch (ClassNotFoundException e) {
             result.error(LOG_TAG, e.getMessage(), null);
